@@ -46,6 +46,18 @@ public class Ocean {
 	
 	@Override
 	public String toString() {
-		return null;
+		String out = " \t";
+		for(int i=0 ; i<shipArray[0].length ; i++) {
+			out += i + "\t";
+		}
+		out += "\n";
+ 		for(int i=0 ; i<shipArray.length ; i++) {
+ 			out += i + "\t";
+			for(int j=0 ; j<shipArray[0].length ; j++) {
+				out += shipArray[i][j].toString() + "\t";
+			}
+			out += "\n";
+		}
+ 		return out;
 	}
 }

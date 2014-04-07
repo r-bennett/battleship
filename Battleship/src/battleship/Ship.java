@@ -11,27 +11,27 @@ public abstract class Ship {
 	public abstract int getLength();
 	
 	public int getBowRow() {
-		return 0;
+		return bowRow;
 	}
 	
 	public int getBowColumn() {
-		return 0;
+		return bowColumn;
 	}
 	
 	public boolean isHorizontal() {
-		return false;
+		return horizontal;
 	}
 	
 	public void setBowRow(int row) {
-		
+		bowRow = row;
 	}
 	
 	public void setBowColumn(int column) {
-		
+		bowColumn = column;
 	}
 	
 	public void setHorizontal(boolean horizontal) {
-		
+		this.horizontal = horizontal;
 	}
 	
 	public abstract String getShipType();
@@ -49,6 +49,6 @@ public abstract class Ship {
 	}
 
 	public boolean isSunk() {
-		return false;
+		return sunk;
 	}
 }

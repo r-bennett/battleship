@@ -4,14 +4,12 @@ public class Battleship extends Ship {
 
 	@Override
 	public int getLength() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 4;
 	}
 
 	@Override
 	public String getShipType() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Battleship";
 	}
 
 }

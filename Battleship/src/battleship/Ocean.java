@@ -4,8 +4,8 @@ public class Ocean {
 	
 	private Ship[][] shipArray;
 	private int shotsFired;
-	private int hits;
-	private int sunk;
+	private int hitCount;
+	private int shipsSunk;
 	private boolean gameOver;
 	
 	public Ocean() {
@@ -25,23 +25,23 @@ public class Ocean {
 	}
 	
 	public int getShotsFired() {
-		return 0;
+		return shotsFired;
 	}
 	
 	public int getHitCount() {
-		return 0;
+		return hitCount;
 	}
 	
 	public int getShipsSunk() {
-		return 0;
+		return shipsSunk;
 	}
 	
 	public boolean isGameOver() {
-		return false;
+		return gameOver;
 	}
 	
 	public Ship[][] getShipArray() {
-		return null;
+		return shipArray;
 	}
 	
 	@Override

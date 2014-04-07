@@ -1,10 +1,14 @@
 package battleship;
 
 public class Battleship extends Ship {
+	
+	public Battleship() {
+		length = 4;
+	}
 
 	@Override
 	public int getLength() {
-		return 4;
+		return length;
 	}
 
 	@Override

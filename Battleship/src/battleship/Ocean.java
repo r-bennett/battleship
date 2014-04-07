@@ -2,6 +2,12 @@ package battleship;
 
 public class Ocean {
 	
+	private Ship[][] shipArray;
+	private int shotsFired;
+	private int hits;
+	private int sunk;
+	private boolean gameOver;
+	
 	public Ocean() {
 		
 	}

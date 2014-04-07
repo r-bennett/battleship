@@ -7,8 +7,13 @@ public abstract class Ship {
 	private int bowColumn;
 	private boolean horizontal;
 	private boolean sunk;
+	protected boolean firedUpon;
 	
 	public abstract int getLength();
+	
+	public Ship() {
+		firedUpon = false;
+	}
 	
 	public int getBowRow() {
 		return bowRow;
@@ -50,5 +55,14 @@ public abstract class Ship {
 
 	public boolean isSunk() {
 		return sunk;
+	}
+	
+	@Override 
+	public String toString() {
+		if(!firedUpon) 
+			return ".";
+		if(isSunk())
+			return "x";
+		return "S";
 	}
 }

@@ -2,6 +2,7 @@ package battleship;
 
 public abstract class Ship {
 	
+	protected int length = 0;
 	private int bowRow;
 	private int bowColumn;
 	private boolean horizontal;

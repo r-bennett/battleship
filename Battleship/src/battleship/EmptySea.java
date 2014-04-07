@@ -1,8 +1,8 @@
 package battleship;
 
-public class PatrolBoat extends Ship {
+public class EmptySea extends Ship {
 
-	public PatrolBoat() {
+	public EmptySea() {
 		length = 1;
 	}
 	
@@ -13,7 +13,8 @@ public class PatrolBoat extends Ship {
 
 	@Override
 	public String getShipType() {
-		return "Patrol Boat";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

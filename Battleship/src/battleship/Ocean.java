@@ -26,7 +26,10 @@ public class Ocean {
 	}
 
 	public boolean isOccupied(int row, int column) {
-		return false;
+		if(shipArray[row][column].getClass().getSimpleName()
+				.equals("EmptySea")) 
+			return false;
+		return true;
 	}
 	
 	public boolean shootAt(int row, int column) {

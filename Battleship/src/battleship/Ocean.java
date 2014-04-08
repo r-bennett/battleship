@@ -112,6 +112,11 @@ public class Ocean {
 
 		if(target.shootAt(row, column)) {
 			hitCount++;
+			if(target.isSunk()) {
+				shipsSunk++;
+				if(shipsSunk==11)
+					gameOver = true;
+			}
 			return true;
 		}
 		return false;

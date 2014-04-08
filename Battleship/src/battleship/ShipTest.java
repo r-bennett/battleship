@@ -66,5 +66,24 @@ public class ShipTest {
 		ac.setHorizontal(false);
 		assertFalse(ac.isHorizontal());
 	}
+	
+	@Test
+	public void isSunkTest() {
+		pb.setBowRow(2);
+		pb.setBowColumn(3);
+		pb.setHorizontal(true);
+		assertFalse(pb.isSunk());
+		pb.shootAt(2, 3);
+		assertTrue(pb.isSunk());
+		
+		d.setBowRow(6);
+		d.setBowColumn(3);
+		d.setHorizontal(true);
+		assertFalse(d.isSunk());
+		d.shootAt(6,3);
+		assertFalse(d.isSunk());
+		d.shootAt(6,4);
+		assertTrue(d.isSunk());		
+	}
 
 }

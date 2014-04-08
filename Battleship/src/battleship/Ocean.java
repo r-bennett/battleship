@@ -15,6 +15,7 @@ public class Ocean {
 	private boolean[][] firedUpon;
 
 	public Ocean() {
+		shipArray = new Ship[BOARD_SIZE][BOARD_SIZE];
 		hitCount = 0;
 		shotsFired = 0;
 		gameOver = false;

@@ -101,14 +101,14 @@ public abstract class Ship {
 		if(horizontal)
 			if(row==bowRow && 
 				column>=bowColumn && column<=bowColumn+length-1) {
-				hit[row-bowRow] = true;
+				hit[column-bowColumn] = true;
 				return true;
 			} else
 				return false;
 		else {
 			if(column==bowColumn && 
 				row>=bowRow && row<=bowRow+length-1) {
-				hit[column-bowColumn] = true;
+				hit[row-bowRow] = true;
 				return true;
 			} else
 				return false;
@@ -116,8 +116,8 @@ public abstract class Ship {
 	}
 
 	public boolean isSunk() {
-		for(boolean isHit : hit) {
-			if(!isHit)
+		for(int i=0 ; i<getLength() ; i++) {
+			if(!hit[i])
 				return false;
 		}
 		return true;

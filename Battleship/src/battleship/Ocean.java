@@ -96,9 +96,25 @@ public class Ocean {
 	}
 
 	public boolean shootAt(int row, int column) {
+		if(row<0 || row>=BOARD_SIZE
+				|| column<0 || column>=BOARD_SIZE)
+			return false;
+		
+		shotsFired++;
 		firedUpon[row][column] = true;
-		// some other stuff here ...........................................................................................
-		return shipArray[row][column].shootAt(row, column);
+		
+		if(!isOccupied(row, column))
+			return false;
+		
+		Ship target = shipArray[row][column];
+		if(target.isSunk())
+			return false;
+		
+		if(target.shootAt(row, column)) {
+			hitCount++;
+			return true;
+		}
+		return false;
 	}
 
 	public int getShotsFired() {

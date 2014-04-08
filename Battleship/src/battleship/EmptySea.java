@@ -4,6 +4,7 @@ public class EmptySea extends Ship {
 
 	public EmptySea() {
 		length = 1;
+		hit = new boolean[length];
 	}
 	
 	@Override
@@ -23,9 +24,7 @@ public class EmptySea extends Ship {
 	
 	@Override
 	public String toString() {
-		if(firedUpon)
-			return "-";
-		return ".";
+		return "-";
 	}
 
 }

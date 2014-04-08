@@ -4,9 +4,8 @@ import java.util.Random;
 
 public class Ocean {
 
-	private static final int BOARD_SIZE = 10;
+	public static final int BOARD_SIZE = 10;
 	private static final int ORIENT_HORIZONTAL = 0;
-	private static final int ORIENT_VERTICAL = 1;
 	private Ship[][] shipArray;
 	private int shotsFired;
 	private int hitCount;
@@ -62,7 +61,6 @@ public class Ocean {
 	}
 
 	private boolean place(Ship ship) {
-		int length = ship.getLength();
 		int orientation = rand.nextInt(2);
 		int startRow = rand.nextInt(BOARD_SIZE);
 		int startCol = rand.nextInt(BOARD_SIZE);
@@ -74,67 +72,19 @@ public class Ocean {
 		
 		for(int j=0 ; j<2 ; j++) { // if all positions fail, try the other orientation
 			do{
-				if(orientation==ORIENT_HORIZONTAL) {
-					if(!(x > BOARD_SIZE - length)) {
-						if(isValid(x, y, length, orientation)){
-							for(int i=0 ; i<length ; i++) {
-								shipArray[x+i][y] = ship;
-							}
-							return true;
-						}
-					}
-				} else {
-					if(!(y > BOARD_SIZE - length)) {
-						if(isValid(x, y, length, orientation)) {
-							for(int i=0 ; i<length ; i++) {
-								shipArray[x][y+i] = ship;
-							}
-							return true;
-						}
-					}
+				if(ship.okToPlaceShipAt(x, y, orientation==ORIENT_HORIZONTAL, this)) {
+					ship.placeShipAt(x, y, orientation==ORIENT_HORIZONTAL, this);
+					return true;
 				}
 				x++;
-				if(x == BOARD_SIZE) {
-					// start on next row
-					x = 0;
-					y = (y+1) % BOARD_SIZE;
+				if(x==BOARD_SIZE) {
+					x=0;
+					y = (y + 1) % BOARD_SIZE;
 				}
 			} while (x!=startRow || y!=startCol);
 			orientation = (orientation + 1) % 2;
 		}
 
-		return false;
-	}
-
-	private boolean isValid(int x, int y, int length, int orientation) {
-		// check all surrounding squares for ships
-		if(orientation==ORIENT_HORIZONTAL) {
-			for(int i=x-1 ; i<=x+length  ; i++) {
-				if(i<0 || i>=BOARD_SIZE) 
-					continue;
-				for(int j=y-1 ; j<=y+1 ; j++) {
-					if(j<0 || j>=BOARD_SIZE)
-						continue;
-					if(isOccupied(i,j))
-						return false;
-				}
-			}
-			return true;
-		}
-
-		if(orientation==ORIENT_VERTICAL) {
-			for(int i=x-1 ; i<=x+1 ; i++) {
-				if(i<0 || i>=BOARD_SIZE) 
-					continue;
-				for(int j=y-1 ; j<=y+length ; y++) {
-					if(j<0 || j>=BOARD_SIZE)
-						continue;
-					if(isOccupied(i,j))
-						return false;
-				}
-			}
-			return true;
-		}
 		return false;
 	}
 

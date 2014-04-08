@@ -49,6 +49,15 @@ public class ShipTest {
 		assertEquals(ac.getBowRow(),9);
 	}
 	
+	@Test
+	public void getShipTypeTest() {
+		assertEquals(ac.getShipType(),"Aircraft Carrier");
+		assertEquals(bs.getShipType(),"Battleship");
+		assertEquals(d.getShipType(),"Destroyer");
+		assertEquals(es.getShipType(),"Empty Sea");
+		assertEquals(pb.getShipType(),"Patrol Boat");
+		assertEquals(s.getShipType(),"Submarine");
+	}
 	
 
 }

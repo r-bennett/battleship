@@ -41,6 +41,14 @@ public class ShipTest {
 		assertEquals(ac.getBowColumn(),9);
 	}
 	
+	@Test
+	public void bowRowTest() {
+		ac.setBowRow(0);
+		assertEquals(ac.getBowRow(),0);
+		ac.setBowRow(9);
+		assertEquals(ac.getBowRow(),9);
+	}
+	
 	
 
 }

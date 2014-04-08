@@ -66,38 +66,40 @@ public class Ocean {
 		int startCol = rand.nextInt(BOARD_SIZE);
 		int x = startRow;
 		int y = startCol;
-
+		
 		// try each coordinate in turn, until you find
 		// one which works, or return to where you started
-
-		do{
-			if(orientation==ORIENT_HORIZONTAL) {
-				if(!(x > BOARD_SIZE - length)) {
-					if(isValid(x, y, length, orientation)){
-						for(int i=0 ; i<length ; i++) {
-							shipArray[x+i][y] = ship;
+		
+		for(int j=0 ; j<2 ; j++) { // if all positions fail, try the other orientation
+			do{
+				if(orientation==ORIENT_HORIZONTAL) {
+					if(!(x > BOARD_SIZE - length)) {
+						if(isValid(x, y, length, orientation)){
+							for(int i=0 ; i<length ; i++) {
+								shipArray[x+i][y] = ship;
+							}
+							return true;
 						}
-						return true;
+					}
+				} else {
+					if(!(y > BOARD_SIZE - length)) {
+						if(isValid(x, y, length, orientation)) {
+							for(int i=0 ; i<length ; i++) {
+								shipArray[x][y+i] = ship;
+							}
+							return true;
+						}
 					}
 				}
-			} else {
-				if(!(y > BOARD_SIZE - length)) {
-					if(isValid(x, y, length, orientation)) {
-						for(int i=0 ; i<length ; i++) {
-							shipArray[x][y+i] = ship;
-						}
-						return true;
-					}
+				x++;
+				if(x == BOARD_SIZE) {
+					// start on next row
+					x = 0;
+					y = (y+1) % BOARD_SIZE;
 				}
-			}
-			x++;
-			if(x == BOARD_SIZE) {
-				// start on next row
-				x = 0;
-				y = (y+1) % BOARD_SIZE;
-			}
-
-		} while (x!=startRow || y!=startCol);
+			} while (x!=startRow || y!=startCol);
+			orientation = (orientation + 1) % 2;
+		}
 
 		return false;
 	}

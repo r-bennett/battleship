@@ -66,10 +66,10 @@ public class Ocean {
 		int startCol = rand.nextInt(BOARD_SIZE);
 		int x = startRow;
 		int y = startCol;
-		
+
 		// try each coordinate in turn, until you find
 		// one which works, or return to where you started
-		
+
 		for(int j=0 ; j<2 ; j++) { // if all positions fail, try the other orientation
 			do{
 				if(ship.okToPlaceShipAt(x, y, orientation==ORIENT_HORIZONTAL, this)) {
@@ -99,17 +99,17 @@ public class Ocean {
 		if(row<0 || row>=BOARD_SIZE
 				|| column<0 || column>=BOARD_SIZE)
 			return false;
-		
+
 		shotsFired++;
 		firedUpon[row][column] = true;
-		
+
 		if(!isOccupied(row, column))
 			return false;
-		
+
 		Ship target = shipArray[row][column];
 		if(target.isSunk())
 			return false;
-		
+
 		if(target.shootAt(row, column)) {
 			hitCount++;
 			return true;
@@ -147,7 +147,10 @@ public class Ocean {
 		for(int i=0 ; i<BOARD_SIZE ; i++) {
 			out += i + "\t";
 			for(int j=0 ; j<BOARD_SIZE ; j++) {
-				out += shipArray[i][j].toString() + "\t";
+				if(firedUpon[i][j])
+					out += shipArray[i][j].toString() + "\t";
+				else
+					out += ".\t";
 			}
 			out += "\n";
 		}

@@ -23,7 +23,8 @@ public class Ocean {
 		rand = new Random();
 	}
 
-	public void placeAllShipsRandomly() {		
+	public void placeAllShipsRandomly() {	
+		// try placing each ship. If not possible, start over again
 		if(!place(new AircraftCarrier())) {
 			emptyShips();
 			placeAllShipsRandomly();
@@ -66,13 +67,12 @@ public class Ocean {
 		int x = startRow;
 		int y = startCol;
 
+		// try each coordinate in turn, until you find
+		// one which works, or return to where you started
+
 		do{
 			if(orientation==ORIENT_HORIZONTAL) {
-				if(x > BOARD_SIZE - length) {
-					// start on next row
-					x = 0;
-					y = (y+1) % BOARD_SIZE;
-				} else {
+				if(!(x > BOARD_SIZE - length)) {
 					if(isValid(x, y, length, orientation)){
 						for(int i=0 ; i<length ; i++) {
 							shipArray[x+i][y] = ship;
@@ -81,10 +81,7 @@ public class Ocean {
 					}
 				}
 			} else {
-				if((y > BOARD_SIZE - length)) {
-					y=0;
-					x=0;
-				} else {
+				if(!(y > BOARD_SIZE - length)) {
 					if(isValid(x, y, length, orientation)) {
 						for(int i=0 ; i<length ; i++) {
 							shipArray[x][y+i] = ship;
@@ -93,7 +90,7 @@ public class Ocean {
 					}
 				}
 			}
-
+			x++;
 			if(x == BOARD_SIZE) {
 				// start on next row
 				x = 0;
@@ -106,6 +103,7 @@ public class Ocean {
 	}
 
 	private boolean isValid(int x, int y, int length, int orientation) {
+		// check all surrounding squares for ships
 		if(orientation==ORIENT_HORIZONTAL) {
 			for(int i=x-1 ; i<=x+length  ; i++) {
 				if(i<0 || i>=BOARD_SIZE) 
@@ -119,7 +117,7 @@ public class Ocean {
 			}
 			return true;
 		}
-		
+
 		if(orientation==ORIENT_VERTICAL) {
 			for(int i=x-1 ; i<=x+1 ; i++) {
 				if(i<0 || i>=BOARD_SIZE) 

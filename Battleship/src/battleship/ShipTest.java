@@ -59,5 +59,12 @@ public class ShipTest {
 		assertEquals(s.getShipType(),"Submarine");
 	}
 	
+	@Test
+	public void horizontalTest() {
+		ac.setHorizontal(true);
+		assertTrue(ac.isHorizontal());
+		ac.setHorizontal(false);
+		assertFalse(ac.isHorizontal());
+	}
 
 }

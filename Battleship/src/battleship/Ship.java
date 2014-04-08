@@ -6,7 +6,6 @@ public abstract class Ship {
 	private int bowRow;
 	private int bowColumn;
 	private boolean horizontal;
-	private boolean sunk;
 	protected boolean[] hit;
 
 	public abstract int getLength();
@@ -95,11 +94,15 @@ public abstract class Ship {
 	}
 
 	public boolean shootAt(int row, int column) {
-		return false;
+		
 	}
 
 	public boolean isSunk() {
-		return sunk;
+		for(boolean isHit : hit) {
+			if(!isHit)
+				return false;
+		}
+		return true;
 	}
 
 	@Override 

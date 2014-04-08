@@ -33,6 +33,14 @@ public class ShipTest {
 		assertEquals(s.getLength(),3);
 	}
 	
+	@Test
+	public void bowColumnTest() {
+		ac.setBowColumn(0);
+		assertEquals(ac.getBowColumn(),0);
+		ac.setBowColumn(9);
+		assertEquals(ac.getBowColumn(),9);
+	}
+	
 	
 
 }

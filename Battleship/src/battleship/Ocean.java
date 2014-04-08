@@ -13,12 +13,14 @@ public class Ocean {
 	private int shipsSunk;
 	private boolean gameOver;
 	private Random rand;
+	private boolean[][] firedUpon;
 
 	public Ocean() {
 		hitCount = 0;
 		shotsFired = 0;
 		gameOver = false;
 		shipsSunk = 0;
+		firedUpon = new boolean[BOARD_SIZE][BOARD_SIZE];
 		emptyShips();
 		rand = new Random();
 	}
@@ -144,6 +146,8 @@ public class Ocean {
 	}
 
 	public boolean shootAt(int row, int column) {
+		firedUpon[row][column] = true;
+		// some other stuff here ...........................................................................................
 		return shipArray[row][column].shootAt(row, column);
 	}
 

@@ -95,6 +95,25 @@ public abstract class Ship {
 
 	public boolean shootAt(int row, int column) {
 		
+		if(isSunk() || row<0 || row>Ocean.BOARD_SIZE
+				|| column<0 || column>Ocean.BOARD_SIZE)
+			return false;
+			
+		if(horizontal)
+			if(row==bowRow && 
+				column>=bowColumn && column<=bowColumn+length-1) {
+				hit[row-bowRow] = true;
+				return true;
+			} else
+				return false;
+		else {
+			if(column==bowColumn && 
+				row>=bowRow && row<=bowRow+length-1) {
+				hit[column-bowColumn] = true;
+				return true;
+			} else
+				return false;
+		}
 	}
 
 	public boolean isSunk() {

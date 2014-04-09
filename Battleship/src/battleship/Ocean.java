@@ -90,8 +90,8 @@ public class Ocean {
 	}
 
 	public boolean isOccupied(int row, int column) {
-		if(shipArray[row][column] == null ||
-				shipArray[row][column].getClass().getSimpleName()
+		if(shipArray[column][row] == null ||
+				shipArray[column][row].getClass().getSimpleName()
 				.equals("EmptySea")) 
 			return false;
 		return true;

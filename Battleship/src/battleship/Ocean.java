@@ -146,18 +146,18 @@ public class Ocean {
 
 	@Override
 	public String toString() {
-		String out = " \t";
+		String out = " ";
 		for(int i=0 ; i<BOARD_SIZE ; i++) {
-			out += i + "\t";
+			out += i;
 		}
 		out += "\n";
 		for(int i=0 ; i<BOARD_SIZE ; i++) {
-			out += i + "\t";
+			out += i;
 			for(int j=0 ; j<BOARD_SIZE ; j++) {
 				if(firedUpon[j][i])
-					out += shipArray[j][i].toString() + "\t";
+					out += shipArray[j][i].toString();
 				else
-					out += ".\t";
+					out += ".";
 			}
 			out += "\n";
 		}

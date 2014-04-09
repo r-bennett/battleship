@@ -42,7 +42,6 @@ public abstract class Ship {
 			// check in bounds
 			if(column<0 || column>Ocean.BOARD_SIZE-length 
 					|| row<0 || row>=Ocean.BOARD_SIZE) {
-				System.out.println("out of bounds at " + column + ", " + row);
 				return false;
 			}
 			// check no ships around
@@ -53,7 +52,6 @@ public abstract class Ship {
 					if(j<0 || j>=Ocean.BOARD_SIZE)
 						continue;
 					if(ocean.isOccupied(j,i)) {
-						System.out.println("found conflicting ship at " + i + ", " + j);
 						return false;
 					}
 				}
@@ -62,7 +60,6 @@ public abstract class Ship {
 			// check in bounds
 			if(column<0 || column>=Ocean.BOARD_SIZE
 					|| row<0 || row>Ocean.BOARD_SIZE-length) {
-				System.out.println("out of bounds at " + column + ", " + row);
 				return false;
 			}
 			// check no ships around
@@ -73,13 +70,11 @@ public abstract class Ship {
 					if(j<0 || j>=Ocean.BOARD_SIZE)
 						continue;
 					if(ocean.isOccupied(j,i)) {
-						System.out.println("found conflicting ship at " + i + ", " + j);
 						return false;
 					}
 				}
 			}
 		}
-		System.out.println("placing " + this.getShipType() + " at " + column + ", " + row);
 		return true;
 	}
 

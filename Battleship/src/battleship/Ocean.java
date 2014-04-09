@@ -65,24 +65,24 @@ public class Ocean {
 		int orientation = rand.nextInt(2);
 		int startRow = rand.nextInt(BOARD_SIZE);
 		int startCol = rand.nextInt(BOARD_SIZE);
-		int x = startCol;
-		int y = startRow;
+		int col = startCol;
+		int row = startRow;
 
 		// try each coordinate in turn, until you find
 		// one which works, or return to where you started
 
 		for(int j=0 ; j<2 ; j++) { // if all positions fail, try the other orientation
 			do{
-				if(ship.okToPlaceShipAt(x, y, orientation==ORIENT_HORIZONTAL, this)) {
-					ship.placeShipAt(x, y, orientation==ORIENT_HORIZONTAL, this);
+				if(ship.okToPlaceShipAt(col, row, orientation==ORIENT_HORIZONTAL, this)) {
+					ship.placeShipAt(col, row, orientation==ORIENT_HORIZONTAL, this);
 					return true;
 				}
-				x++;
-				if(x==BOARD_SIZE) {
-					x=0;
-					y = (y + 1) % BOARD_SIZE;
+				col++;
+				if(col==BOARD_SIZE) {
+					col=0;
+					row = (row + 1) % BOARD_SIZE;
 				}
-			} while (x!=startCol || y!=startRow);
+			} while (col!=startCol || row!=startRow);
 			orientation = (orientation + 1) % 2;
 		}
 

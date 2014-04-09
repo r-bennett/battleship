@@ -17,7 +17,7 @@ public class BattleshipGame {
 			while(!ocean.isGameOver()) {
 				System.out.println("Enter column number: ");
 				int column = sc.nextInt();
-				System.out.println("Enter row number: 4");
+				System.out.println("Enter row number: ");
 				int row = sc.nextInt();
 				ocean.shootAt(row, column);
 				System.out.println();

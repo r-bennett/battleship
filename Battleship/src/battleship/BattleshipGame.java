@@ -10,14 +10,16 @@ public class BattleshipGame {
 		Scanner sc = new Scanner(System.in);
 		ocean = new Ocean();
 		ocean.placeAllShipsRandomly();
-		System.out.println(ocean.toString());
+		//System.out.println(ocean.toString());
+		System.out.println(ocean.toFullString());
 		
 		while(!ocean.isGameOver()) {
 			int column = sc.nextInt();
 			int row = sc.nextInt();
 			ocean.shootAt(row, column);
 			System.out.println();
-			System.out.println(ocean.toString());
+			//System.out.println(ocean.toString());
+			System.out.println(ocean.toFullString());
 		}
 		sc.close();
 	}

@@ -2,7 +2,7 @@ package battleship;
 
 public abstract class Ship {
 
-	protected int length = 0;
+	protected int length;
 	private int bowRow;
 	private int bowColumn;
 	private boolean horizontal;
@@ -37,10 +37,12 @@ public abstract class Ship {
 	public abstract String getShipType();
 
 	public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+		System.out.println(this.getShipType());
 		if(horizontal) {
 			// check in bounds
-			if(row<0 || row>Ocean.BOARD_SIZE-length 
-					|| column<0 || column>=Ocean.BOARD_SIZE) {
+			if(column<0 || column>Ocean.BOARD_SIZE-length 
+					|| row<0 || row>=Ocean.BOARD_SIZE) {
+				System.out.println("out of bounds at " + column + ", " + row);
 				return false;
 			}
 			// check no ships around
@@ -50,14 +52,17 @@ public abstract class Ship {
 				for(int j=row-1 ; j<=row+1 ; j++) {
 					if(j<0 || j>=Ocean.BOARD_SIZE)
 						continue;
-					if(ocean.isOccupied(i,j))
+					if(ocean.isOccupied(i,j)) {
+						System.out.println("found conflicting ship at " + i + ", " + j);
 						return false;
+					}
 				}
 			}
 		} else {
 			// check in bounds
-			if(row<0 || row>=Ocean.BOARD_SIZE
-					|| column<0 || column>Ocean.BOARD_SIZE-length) {
+			if(column<0 || column>=Ocean.BOARD_SIZE
+					|| row<0 || row>Ocean.BOARD_SIZE-length) {
+				System.out.println("out of bounds at " + column + ", " + row);
 				return false;
 			}
 			// check no ships around
@@ -67,11 +72,14 @@ public abstract class Ship {
 				for(int j=row-1 ; j<=row+length ; j++) {
 					if(j<0 || j>=Ocean.BOARD_SIZE)
 						continue;
-					if(ocean.isOccupied(i,j))
+					if(ocean.isOccupied(i,j)) {
+						System.out.println("found conflicting ship at " + i + ", " + j);
 						return false;
+					}
 				}
 			}
 		}
+		System.out.println("placing " + this.getShipType() + " at " + column + ", " + row);
 		return true;
 	}
 
@@ -82,32 +90,32 @@ public abstract class Ship {
 		Ship[][] shipArray = ocean.getShipArray();
 		if(horizontal) {
 			for(int i=0 ; i<length ; i++) {
-				shipArray[row + i][column] = this;
+				shipArray[row][column + i] = this;
 			}
 		} else {
 			for(int i=0 ; i<length ; i++) {
-				shipArray[row][column + i] = this;
+				shipArray[row + i][column] = this;
 			}
 		}
 
 	}
 
 	public boolean shootAt(int row, int column) {
-		
+
 		if(isSunk() || row<0 || row>Ocean.BOARD_SIZE
 				|| column<0 || column>Ocean.BOARD_SIZE)
 			return false;
-			
+
 		if(horizontal)
 			if(row==bowRow && 
-				column>=bowColumn && column<=bowColumn+length-1) {
+			column>=bowColumn && column<=bowColumn+length-1) {
 				hit[column-bowColumn] = true;
 				return true;
 			} else
 				return false;
 		else {
 			if(column==bowColumn && 
-				row>=bowRow && row<=bowRow+length-1) {
+					row>=bowRow && row<=bowRow+length-1) {
 				hit[row-bowRow] = true;
 				return true;
 			} else

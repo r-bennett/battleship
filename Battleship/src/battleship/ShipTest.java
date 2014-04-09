@@ -89,7 +89,7 @@ public class ShipTest {
 	}
 	
 	@Test
-	public void okToPlaceShipAtTest() {
+	public void placeShipTest() {
 		ac.placeShipAt(0,0,true,o);
 		assertFalse(bs.okToPlaceShipAt(0,0,true,o));
 		assertFalse(bs.okToPlaceShipAt(1,0,true,o));
@@ -98,5 +98,44 @@ public class ShipTest {
 		assertTrue(bs.okToPlaceShipAt(0, 6, false, o));
 		assertTrue(bs.okToPlaceShipAt(6,0,true,o));
 	}
+	
+	public void okToPlaceShipTest() {
+		assertFalse(ac.okToPlaceShipAt(-1, 0, false, o));
+		assertFalse(ac.okToPlaceShipAt(-1, 0, true, o));
+		assertFalse(ac.okToPlaceShipAt(0, -1, true, o));
+		assertFalse(ac.okToPlaceShipAt(0, -1, false, o));
+		
+		assertFalse(ac.okToPlaceShipAt(0, 6, true, o));
+		assertFalse(ac.okToPlaceShipAt(6, 0, false, o));
+		assertFalse(ac.okToPlaceShipAt(10, 0, true, o));
+		assertFalse(ac.okToPlaceShipAt(0, 10, false, o));
+		
+		assertFalse(bs.okToPlaceShipAt(-1, 0, false, o));
+		assertFalse(bs.okToPlaceShipAt(-1, 0, true, o));
+		assertFalse(bs.okToPlaceShipAt(0, -1, true, o));
+		assertFalse(bs.okToPlaceShipAt(0, -1, false, o));
+		
+		assertFalse(bs.okToPlaceShipAt(0, 7, true, o));
+		assertFalse(bs.okToPlaceShipAt(7, 0, false, o));
+		assertFalse(bs.okToPlaceShipAt(10, 0, true, o));
+		assertFalse(bs.okToPlaceShipAt(0, 10, false, o));
 
+		assertFalse(s.okToPlaceShipAt(-1, 0, false, o));
+		assertFalse(s.okToPlaceShipAt(-1, 0, true, o));
+		assertFalse(s.okToPlaceShipAt(0, -1, true, o));
+		assertFalse(s.okToPlaceShipAt(0, -1, false, o));
+		
+		assertFalse(d.okToPlaceShipAt(0, 8, true, o));
+		assertFalse(d.okToPlaceShipAt(8, 0, false, o));
+		assertFalse(d.okToPlaceShipAt(10, 0, true, o));
+		assertFalse(d.okToPlaceShipAt(0, 10, false, o));
+		
+		assertFalse(pb.okToPlaceShipAt(0, 9, true, o));
+		assertFalse(pb.okToPlaceShipAt(9, 0, false, o));
+		assertFalse(pb.okToPlaceShipAt(10, 0, true, o));
+		assertFalse(pb.okToPlaceShipAt(0, 10, false, o));
+		
+		assertFalse(pb.okToPlaceShipAt(10, 0, true, o));
+		assertFalse(pb.okToPlaceShipAt(0, 10, false, o));
+	}
 }

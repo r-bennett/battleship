@@ -65,8 +65,8 @@ public class Ocean {
 		int orientation = rand.nextInt(2);
 		int startRow = rand.nextInt(BOARD_SIZE);
 		int startCol = rand.nextInt(BOARD_SIZE);
-		int x = startRow;
-		int y = startCol;
+		int x = startCol;
+		int y = startRow;
 
 		// try each coordinate in turn, until you find
 		// one which works, or return to where you started
@@ -82,7 +82,7 @@ public class Ocean {
 					x=0;
 					y = (y + 1) % BOARD_SIZE;
 				}
-			} while (x!=startRow || y!=startCol);
+			} while (x!=startCol || y!=startRow);
 			orientation = (orientation + 1) % 2;
 		}
 
@@ -158,6 +158,22 @@ public class Ocean {
 					out += shipArray[i][j].toString() + "\t";
 				else
 					out += ".\t";
+			}
+			out += "\n";
+		}
+		return out;
+	}
+	
+	public String toFullString() {
+		String out = " \t";
+		for(int i=0 ; i<BOARD_SIZE ; i++) {
+			out += i + "\t";
+		}
+		out += "\n";
+		for(int i=0 ; i<BOARD_SIZE ; i++) {
+			out += i + "\t";
+			for(int j=0 ; j<BOARD_SIZE ; j++) {
+					out += shipArray[i][j].toString() + "\t";
 			}
 			out += "\n";
 		}

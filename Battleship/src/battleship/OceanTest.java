@@ -16,8 +16,8 @@ public class OceanTest {
 	@Test
 	public void testOcean() {
 		Ship[][] shipArray = o.getShipArray();
-		for(int i=0 ; i<o.BOARD_SIZE ; i++) {
-			for(int j=0 ; j<o.BOARD_SIZE ; j++) {
+		for(int i=0 ; i<Ocean.BOARD_SIZE ; i++) {
+			for(int j=0 ; j<Ocean.BOARD_SIZE ; j++) {
 				assertEquals(shipArray[i][j].getClass(),new EmptySea().getClass());
 			}
 		}

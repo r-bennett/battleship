@@ -44,10 +44,10 @@ public abstract class Ship {
 				return false;
 			}
 			// check no ships around
-			for(int i=row-1 ; i<=row+length  ; i++) {
+			for(int i=column-1 ; i<=column+length  ; i++) {
 				if(i<0 || i>=Ocean.BOARD_SIZE) 
 					continue;
-				for(int j=column-1 ; j<=column+1 ; j++) {
+				for(int j=row-1 ; j<=row+1 ; j++) {
 					if(j<0 || j>=Ocean.BOARD_SIZE)
 						continue;
 					if(ocean.isOccupied(i,j))
@@ -61,10 +61,10 @@ public abstract class Ship {
 				return false;
 			}
 			// check no ships around
-			for(int i=row-1 ; i<=row+1 ; i++) {
+			for(int i=column-1 ; i<=column+1 ; i++) {
 				if(i<0 || i>=Ocean.BOARD_SIZE) 
 					continue;
-				for(int j=column-1 ; j<=column+length ; j++) {
+				for(int j=row-1 ; j<=row+length ; j++) {
 					if(j<0 || j>=Ocean.BOARD_SIZE)
 						continue;
 					if(ocean.isOccupied(i,j))

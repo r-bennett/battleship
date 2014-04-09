@@ -164,22 +164,6 @@ public class Ocean {
 		return out;
 	}
 	
-	public String toFullString() {
-		String out = " \t";
-		for(int i=0 ; i<BOARD_SIZE ; i++) {
-			out += i + "\t";
-		}
-		out += "\n";
-		for(int i=0 ; i<BOARD_SIZE ; i++) {
-			out += i + "\t";
-			for(int j=0 ; j<BOARD_SIZE ; j++) {
-					out += shipArray[i][j].toString() + "\t";
-			}
-			out += "\n";
-		}
-		return out;
-	}
-
 	private void emptyShips() {
 		for(int i=0 ; i<BOARD_SIZE ; i++) {
 			for(int j=0 ; j<BOARD_SIZE ; j++) {

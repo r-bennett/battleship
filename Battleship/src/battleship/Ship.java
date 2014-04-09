@@ -37,7 +37,6 @@ public abstract class Ship {
 	public abstract String getShipType();
 
 	public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-		System.out.println(this.getShipType());
 		if(horizontal) {
 			// check in bounds
 			if(column<0 || column>Ocean.BOARD_SIZE-length 

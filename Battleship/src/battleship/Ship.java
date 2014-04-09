@@ -52,7 +52,7 @@ public abstract class Ship {
 				for(int j=row-1 ; j<=row+1 ; j++) {
 					if(j<0 || j>=Ocean.BOARD_SIZE)
 						continue;
-					if(ocean.isOccupied(i,j)) {
+					if(ocean.isOccupied(j,i)) {
 						System.out.println("found conflicting ship at " + i + ", " + j);
 						return false;
 					}
@@ -72,7 +72,7 @@ public abstract class Ship {
 				for(int j=row-1 ; j<=row+length ; j++) {
 					if(j<0 || j>=Ocean.BOARD_SIZE)
 						continue;
-					if(ocean.isOccupied(i,j)) {
+					if(ocean.isOccupied(j,i)) {
 						System.out.println("found conflicting ship at " + i + ", " + j);
 						return false;
 					}

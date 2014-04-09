@@ -103,12 +103,12 @@ public class Ocean {
 			return false;
 
 		shotsFired++;
-		firedUpon[row][column] = true;
+		firedUpon[column][row] = true;
 
 		if(!isOccupied(row, column))
 			return false;
 
-		Ship target = shipArray[row][column];
+		Ship target = shipArray[column][row];
 		if(target.isSunk())
 			return false;
 

@@ -90,11 +90,11 @@ public abstract class Ship {
 		Ship[][] shipArray = ocean.getShipArray();
 		if(horizontal) {
 			for(int i=0 ; i<length ; i++) {
-				shipArray[row][column + i] = this;
+				shipArray[column + i][row] = this;
 			}
 		} else {
 			for(int i=0 ; i<length ; i++) {
-				shipArray[row + i][column] = this;
+				shipArray[column][row + i] = this;
 			}
 		}
 

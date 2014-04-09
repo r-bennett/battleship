@@ -154,8 +154,8 @@ public class Ocean {
 		for(int i=0 ; i<BOARD_SIZE ; i++) {
 			out += i + "\t";
 			for(int j=0 ; j<BOARD_SIZE ; j++) {
-				if(firedUpon[i][j])
-					out += shipArray[i][j].toString() + "\t";
+				if(firedUpon[j][i])
+					out += shipArray[j][i].toString() + "\t";
 				else
 					out += ".\t";
 			}

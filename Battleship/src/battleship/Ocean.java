@@ -73,8 +73,8 @@ public class Ocean {
 
 		for(int j=0 ; j<2 ; j++) { // if all positions fail, try the other orientation
 			do{
-				if(ship.okToPlaceShipAt(col, row, orientation==ORIENT_HORIZONTAL, this)) {
-					ship.placeShipAt(col, row, orientation==ORIENT_HORIZONTAL, this);
+				if(ship.okToPlaceShipAt(row, col, orientation==ORIENT_HORIZONTAL, this)) {
+					ship.placeShipAt(row, col, orientation==ORIENT_HORIZONTAL, this);
 					return true;
 				}
 				col++;

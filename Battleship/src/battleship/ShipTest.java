@@ -12,6 +12,7 @@ public class ShipTest {
 	public Ship es;
 	public Ship pb;
 	public Ship s;
+	public Ocean o;
 	
 	@Before
 	public void buildUp() {
@@ -20,7 +21,8 @@ public class ShipTest {
 		d = new Destroyer();
 		es = new EmptySea();
 		pb = new PatrolBoat();
-		s = new Submarine();				
+		s = new Submarine();
+		o = new Ocean();
 	}
 
 	@Test
@@ -84,6 +86,17 @@ public class ShipTest {
 		assertFalse(d.isSunk());
 		d.shootAt(6,4);
 		assertTrue(d.isSunk());		
+	}
+	
+	@Test
+	public void okToPlaceShipAtTest() {
+		ac.placeShipAt(0,0,true,o);
+		assertFalse(bs.okToPlaceShipAt(0,0,true,o));
+		assertFalse(bs.okToPlaceShipAt(1,0,true,o));
+		assertFalse(bs.okToPlaceShipAt(1,5,true,o));
+		assertFalse(bs.okToPlaceShipAt(0,5,false,o));
+		assertTrue(bs.okToPlaceShipAt(0, 6, false, o));
+		assertTrue(bs.okToPlaceShipAt(6,0,true,o));
 	}
 
 }

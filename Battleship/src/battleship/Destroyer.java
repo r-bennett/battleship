@@ -7,7 +7,7 @@ package battleship;
 public class Destroyer extends Ship {
 	
 	/**
-	 * 
+	 *  Initialises the length and hit[] fields
 	 */
 	public Destroyer() {
 		length = 2;

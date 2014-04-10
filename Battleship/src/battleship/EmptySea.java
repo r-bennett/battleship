@@ -7,7 +7,7 @@ package battleship;
 public class EmptySea extends Ship {
 
 	/**
-	 * 
+	 *  Initialises the length and hit[] fields
 	 */
 	public EmptySea() {
 		length = 1;
@@ -30,16 +30,19 @@ public class EmptySea extends Ship {
 		return "Empty Sea";
 	}
 
-	/* (non-Javadoc)
-	 * @see battleship.Ship#shootAt(int, int)
+	/**
+	 * Always returns false, regardless
+	 * 
+	 * @param row target row
+	 * @param column target column
 	 */
 	@Override
 	public boolean shootAt(int row, int column) {
 		return false;
 	}
 	
-	/* (non-Javadoc)
-	 * @see battleship.Ship#toString()
+	/**
+	 * Always returns "-"
 	 */
 	@Override
 	public String toString() {

@@ -7,7 +7,7 @@ package battleship;
 public class Battleship extends Ship {
 	
 	/**
-	 * 
+	 *  Initialises the length and hit[] fields
 	 */
 	public Battleship() {
 		length = 4;

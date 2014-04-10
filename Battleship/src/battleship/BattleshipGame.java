@@ -13,7 +13,14 @@ public class BattleshipGame {
 	private static boolean playAgain = true;
 
 	/**
-	 * @param args
+	 * Runs the game, creating the ocean instance,
+	 * populating with ships, printing the current
+	 * ocean and accepting user input.
+	 * 
+	 * Also manages the end of game printing of scores
+	 * and allows user to request a new game
+	 * 
+	 * @param args unused
 	 */
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

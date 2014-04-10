@@ -13,63 +13,68 @@ public abstract class Ship {
 	protected boolean[] hit;
 
 	/**
-	 * @return
+	 * @return length
 	 */
 	public abstract int getLength();
 
 	/**
-	 * @return
+	 * @return bowRow
 	 */
 	public int getBowRow() {
 		return bowRow;
 	}
 
 	/**
-	 * @return
+	 * @return bowColumn
 	 */
 	public int getBowColumn() {
 		return bowColumn;
 	}
 
 	/**
-	 * @return
+	 * @return horizontal
 	 */
 	public boolean isHorizontal() {
 		return horizontal;
 	}
 
 	/**
-	 * @param row
+	 * @param row row to set bow at
 	 */
 	public void setBowRow(int row) {
 		bowRow = row;
 	}
 
 	/**
-	 * @param column
+	 * @param column column to set bow at
 	 */
 	public void setBowColumn(int column) {
 		bowColumn = column;
 	}
 
 	/**
-	 * @param horizontal
+	 * @param horizontal value to assign to horizontal
 	 */
 	public void setHorizontal(boolean horizontal) {
 		this.horizontal = horizontal;
 	}
 
 	/**
-	 * @return
+	 * @return name of ship, e.g. "Patrol Boat"
 	 */
 	public abstract String getShipType();
 
 	/**
-	 * @param row
-	 * @param column
-	 * @param horizontal
-	 * @param ocean
-	 * @return
+	 * Checks if a ship can be placed in a given position,
+	 * but does not alter state of ship or ocean
+	 * 
+	 * @param row target row
+	 * @param column target column
+	 * @param horizontal ship's orientation
+	 * @param ocean ocean to place in
+	 * @return true if ship can be placed in given way,
+	 * without being adjacent to an existing ship 
+	 * (including diagonally), false otherwise
 	 */
 	public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 		if(horizontal) {
@@ -113,10 +118,13 @@ public abstract class Ship {
 	}
 
 	/**
-	 * @param row
-	 * @param column
-	 * @param horizontal
-	 * @param ocean
+	 * Places the ship at the given position in the given ocean.
+	 * Note: method does not check for the validity of this position.
+	 * 
+	 * @param row target bow row
+	 * @param column target bow column
+	 * @param horizontal ship orientation
+	 * @param ocean ocean to place in 
 	 */
 	public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 		setBowRow(row);
@@ -136,9 +144,13 @@ public abstract class Ship {
 	}
 
 	/**
-	 * @param row
-	 * @param column
-	 * @return
+	 * Attempts to shoot at given position. Updates ship's
+	 * hit[] if necessary.
+	 * 
+	 * @param row target row
+	 * @param column target column
+	 * @return true if ship hit which hasn't already been sunk,
+	 * false otherwise
 	 */
 	public boolean shootAt(int row, int column) {
 
@@ -164,7 +176,8 @@ public abstract class Ship {
 	}
 
 	/**
-	 * @return
+	 * @return true if all positions of hit[] 
+	 * are true, false otherwise
 	 */
 	public boolean isSunk() {
 		for(int i=0 ; i<getLength() ; i++) {
@@ -174,8 +187,8 @@ public abstract class Ship {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return "x" if ship is sunk, "S" otherwise
 	 */
 	@Override 
 	public String toString() {

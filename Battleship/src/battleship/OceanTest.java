@@ -1,18 +1,25 @@
 package battleship;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class OceanTest {
 	Ocean o;
-	Ship ac;
+	Ship ac, pb;
+	
 
 	@Before
 	public void setUp() throws Exception {
 		o = new Ocean();
 		ac = new AircraftCarrier();
+		pb = new PatrolBoat();
 	}
 
 	@Test
@@ -64,40 +71,85 @@ public class OceanTest {
 
 	@Test
 	public void testIsOccupied() {
-		assertFalse(o.isOccupied(0, 0));
-		ac.placeShipAt(0, 0, true, o);
-		assertTrue(o.isOccupied(0, 0));
-		assertTrue(o.isOccupied(0, 4));
+		assertFalse(o.isOccupied(1, 0));
+		ac.placeShipAt(1, 0, true, o);
+		assertTrue(o.isOccupied(1, 0));
+		assertTrue(o.isOccupied(1, 4));
 	}
 
 	@Test
 	public void testShootAt() {
-		fail("Not yet implemented");
+		ac.placeShipAt(3, 2, true, o);
+		assertTrue(o.shootAt(3, 2));
+		assertTrue(o.shootAt(3, 2));
+		assertTrue(o.shootAt(3, 3));
+		assertTrue(o.shootAt(3, 4));
+		assertTrue(o.shootAt(3, 5));
+		assertTrue(o.shootAt(3, 6));
+		assertFalse(o.shootAt(3, 2));
 	}
 
 	@Test
 	public void testGetShotsFired() {
-		fail("Not yet implemented");
+		ac.placeShipAt(3, 2, true, o);
+		assertEquals(0, o.getShotsFired());
+		o.shootAt(3, 2);
+		o.shootAt(3, 2);
+		assertEquals(2, o.getShotsFired());
+		o.shootAt(7, 8);
+		assertEquals(3, o.getShotsFired());
+		o.shootAt(50, -3);
+		assertEquals(3, o.getShotsFired());
 	}
 
 	@Test
 	public void testGetHitCount() {
-		fail("Not yet implemented");
+		ac.placeShipAt(3, 2, true, o);
+		assertEquals(0, o.getHitCount());
+		o.shootAt(3, 2);
+		assertEquals(1, o.getHitCount());
+		o.shootAt(3, 2);
+		assertEquals(2, o.getHitCount());
+		o.shootAt(3, 3);
+		assertEquals(3, o.getHitCount());
+		pb.placeShipAt(0, 0, true, o);
+		o.shootAt(0, 0);
+		assertEquals(4, o.getHitCount());
+		o.shootAt(0, 0);
+		assertEquals(4, o.getHitCount());
+		o.shootAt(9, 9);
+		assertEquals(4, o.getHitCount());
 	}
 
 	@Test
 	public void testGetShipsSunk() {
-		fail("Not yet implemented");
+		pb.placeShipAt(0, 0, true, o);
+		ac.placeShipAt(4, 4, false, o);
+		
+		assertEquals(0, o.getShipsSunk());
+		o.shootAt(0, 0);
+		assertEquals(1, o.getShipsSunk());
+		o.shootAt(0, 0);
+		assertEquals(1, o.getShipsSunk());
+		
+		o.shootAt(4, 4);
+		assertEquals(1, o.getShipsSunk());
+		o.shootAt(5, 4);
+		o.shootAt(6, 4);
+		o.shootAt(7, 4);
+		o.shootAt(8, 4);
+		assertEquals(2, o.getShipsSunk());
 	}
 
 	@Test
 	public void testIsGameOver() {
-		fail("Not yet implemented");
+		o.placeAllShipsRandomly();
+		Random rand = new Random();
+		while(o.getShipsSunk()<11) {
+			assertFalse(o.isGameOver());
+			o.shootAt(rand.nextInt(Ocean.BOARD_SIZE), 
+					rand.nextInt(Ocean.BOARD_SIZE));
+		}
+		assertTrue(o.isGameOver());
 	}
-
-	@Test
-	public void testGetShipArray() {
-		fail("Not yet implemented");
-	}
-
 }

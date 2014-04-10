@@ -10,6 +10,10 @@ import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author Bennett_Richard
+ *
+ */
 public class OceanTest {
 	Ocean o;
 	Ship ac, pb;

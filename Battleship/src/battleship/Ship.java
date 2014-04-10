@@ -1,5 +1,9 @@
 package battleship;
 
+/**
+ * @author Bennett_Richard
+ *
+ */
 public abstract class Ship {
 
 	protected int length;
@@ -8,34 +12,65 @@ public abstract class Ship {
 	private boolean horizontal;
 	protected boolean[] hit;
 
+	/**
+	 * @return
+	 */
 	public abstract int getLength();
 
+	/**
+	 * @return
+	 */
 	public int getBowRow() {
 		return bowRow;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getBowColumn() {
 		return bowColumn;
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isHorizontal() {
 		return horizontal;
 	}
 
+	/**
+	 * @param row
+	 */
 	public void setBowRow(int row) {
 		bowRow = row;
 	}
 
+	/**
+	 * @param column
+	 */
 	public void setBowColumn(int column) {
 		bowColumn = column;
 	}
 
+	/**
+	 * @param horizontal
+	 */
 	public void setHorizontal(boolean horizontal) {
 		this.horizontal = horizontal;
 	}
 
+	/**
+	 * @return
+	 */
 	public abstract String getShipType();
 
+	/**
+	 * @param row
+	 * @param column
+	 * @param horizontal
+	 * @param ocean
+	 * @return
+	 */
 	public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 		if(horizontal) {
 			// check in bounds
@@ -77,6 +112,12 @@ public abstract class Ship {
 		return true;
 	}
 
+	/**
+	 * @param row
+	 * @param column
+	 * @param horizontal
+	 * @param ocean
+	 */
 	public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 		setBowRow(row);
 		setBowColumn(column);
@@ -94,6 +135,11 @@ public abstract class Ship {
 
 	}
 
+	/**
+	 * @param row
+	 * @param column
+	 * @return
+	 */
 	public boolean shootAt(int row, int column) {
 
 		if(isSunk() || row<0 || row>Ocean.BOARD_SIZE
@@ -117,6 +163,9 @@ public abstract class Ship {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isSunk() {
 		for(int i=0 ; i<getLength() ; i++) {
 			if(!hit[i])
@@ -125,6 +174,9 @@ public abstract class Ship {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override 
 	public String toString() {
 		if(isSunk())

@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author Bennett_Richard
+ *
+ */
 public class ShipTest {
 	public Ship ac;
 	public Ship bs;

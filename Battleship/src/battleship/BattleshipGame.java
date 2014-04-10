@@ -2,11 +2,19 @@ package battleship;
 
 import java.util.Scanner;
 
+/**
+ * @author Bennett_Richard
+ *
+ */
 public class BattleshipGame {
+
 
 	private static Ocean ocean;
 	private static boolean playAgain = true;
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		while(playAgain) {

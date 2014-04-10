@@ -2,6 +2,10 @@ package battleship;
 
 import java.util.Random;
 
+/**
+ * @author Bennett_Richard
+ *
+ */
 public class Ocean {
 
 	public static final int BOARD_SIZE = 10;
@@ -14,6 +18,9 @@ public class Ocean {
 	private Random rand;
 	private boolean[][] firedUpon;
 
+	/**
+	 * 
+	 */
 	public Ocean() {
 		shipArray = new Ship[BOARD_SIZE][BOARD_SIZE];
 		hitCount = 0;
@@ -25,6 +32,9 @@ public class Ocean {
 		rand = new Random();
 	}
 
+	/**
+	 * 
+	 */
 	public void placeAllShipsRandomly() {	
 		// try placing each ship. If not possible, start over again
 		if(!place(new AircraftCarrier())) {
@@ -61,6 +71,10 @@ public class Ocean {
 		}
 	}
 
+	/**
+	 * @param ship
+	 * @return
+	 */
 	private boolean place(Ship ship) {
 		int orientation = rand.nextInt(2);
 		int startRow = rand.nextInt(BOARD_SIZE);
@@ -89,6 +103,11 @@ public class Ocean {
 		return false;
 	}
 
+	/**
+	 * @param row
+	 * @param column
+	 * @return
+	 */
 	public boolean isOccupied(int row, int column) {
 		if(shipArray[column][row] == null ||
 				shipArray[column][row].getClass().getSimpleName()
@@ -97,6 +116,11 @@ public class Ocean {
 		return true;
 	}
 
+	/**
+	 * @param row
+	 * @param column
+	 * @return
+	 */
 	public boolean shootAt(int row, int column) {
 		if(row<0 || row>=BOARD_SIZE
 				|| column<0 || column>=BOARD_SIZE)
@@ -124,26 +148,44 @@ public class Ocean {
 		return false;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getShotsFired() {
 		return shotsFired;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getHitCount() {
 		return hitCount;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getShipsSunk() {
 		return shipsSunk;
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isGameOver() {
 		return gameOver;
 	}
 
+	/**
+	 * @return
+	 */
 	public Ship[][] getShipArray() {
 		return shipArray;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		String out = "  ";
@@ -164,6 +206,9 @@ public class Ocean {
 		return out;
 	}
 	
+	/**
+	 * 
+	 */
 	private void emptyShips() {
 		for(int i=0 ; i<BOARD_SIZE ; i++) {
 			for(int j=0 ; j<BOARD_SIZE ; j++) {

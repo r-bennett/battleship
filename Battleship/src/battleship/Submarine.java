@@ -2,19 +2,21 @@ package battleship;
 
 /**
  * @author Bennett_Richard
- *
+ * 
  */
 public class Submarine extends Ship {
-	
+
 	/**
-	 *  Initialises the length and hit[] fields
+	 * Initialises the length and hit[] fields
 	 */
 	public Submarine() {
 		length = 3;
 		hit = new boolean[length];
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see battleship.Ship#getLength()
 	 */
 	@Override
@@ -22,7 +24,9 @@ public class Submarine extends Ship {
 		return length;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see battleship.Ship#getShipType()
 	 */
 	@Override

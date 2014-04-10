@@ -2,19 +2,21 @@ package battleship;
 
 /**
  * @author Bennett_Richard
- *
+ * 
  */
 public class EmptySea extends Ship {
 
 	/**
-	 *  Initialises the length and hit[] fields
+	 * Initialises the length and hit[] fields
 	 */
 	public EmptySea() {
 		length = 1;
 		hit = new boolean[length];
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see battleship.Ship#getLength()
 	 */
 	@Override
@@ -22,7 +24,9 @@ public class EmptySea extends Ship {
 		return length;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see battleship.Ship#getShipType()
 	 */
 	@Override
@@ -33,14 +37,16 @@ public class EmptySea extends Ship {
 	/**
 	 * Always returns false, regardless
 	 * 
-	 * @param row target row
-	 * @param column target column
+	 * @param row
+	 *            target row
+	 * @param column
+	 *            target column
 	 */
 	@Override
 	public boolean shootAt(int row, int column) {
 		return false;
 	}
-	
+
 	/**
 	 * Always returns "-"
 	 */

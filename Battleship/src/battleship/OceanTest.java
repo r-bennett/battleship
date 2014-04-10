@@ -12,12 +12,11 @@ import org.junit.Test;
 
 /**
  * @author Bennett_Richard
- *
+ * 
  */
 public class OceanTest {
 	Ocean o;
 	Ship ac, pb;
-	
 
 	@Before
 	public void setUp() throws Exception {
@@ -29,14 +28,15 @@ public class OceanTest {
 	@Test
 	public void testOcean() {
 		Ship[][] shipArray = o.getShipArray();
-		for(int i=0 ; i<Ocean.BOARD_SIZE ; i++) {
-			for(int j=0 ; j<Ocean.BOARD_SIZE ; j++) {
-				assertEquals(shipArray[i][j].getClass(),new EmptySea().getClass());
+		for (int i = 0; i < Ocean.BOARD_SIZE; i++) {
+			for (int j = 0; j < Ocean.BOARD_SIZE; j++) {
+				assertEquals(shipArray[i][j].getClass(),
+						new EmptySea().getClass());
 			}
 		}
-		assertEquals(o.getHitCount(),0);
-		assertEquals(o.getShotsFired(),0);
-		assertEquals(o.getShipsSunk(),0);
+		assertEquals(o.getHitCount(), 0);
+		assertEquals(o.getShotsFired(), 0);
+		assertEquals(o.getShipsSunk(), 0);
 		assertFalse(o.isGameOver());
 	}
 
@@ -45,27 +45,28 @@ public class OceanTest {
 		// check correct number of occupied spaces
 		int shipCount = 0;
 		o.placeAllShipsRandomly();
-		for(int i=0 ; i<Ocean.BOARD_SIZE ; i++) {
-			for(int j=0 ; j<Ocean.BOARD_SIZE ; j++) {
-				if(o.isOccupied(i, j))
+		for (int i = 0; i < Ocean.BOARD_SIZE; i++) {
+			for (int j = 0; j < Ocean.BOARD_SIZE; j++) {
+				if (o.isOccupied(i, j))
 					shipCount++;
 			}
 		}
-		assertEquals(shipCount,(5 + 2*4 + 2*3 + 2*2 + 4*1));
-		
-		//check no diagonally adjacent ships
-		for(int i=0 ; i<Ocean.BOARD_SIZE ; i++) {
-			for(int j=0 ; j<Ocean.BOARD_SIZE ; j++) {
-				if(o.isOccupied(i, j)) {
-					for(int x=i-1 ; x<=i+1 ; x=x+2) {
-						if(x<0 || x>=Ocean.BOARD_SIZE)
+		assertEquals(shipCount, (5 + 2 * 4 + 2 * 3 + 2 * 2 + 4 * 1));
+
+		// check no diagonally adjacent ships
+		for (int i = 0; i < Ocean.BOARD_SIZE; i++) {
+			for (int j = 0; j < Ocean.BOARD_SIZE; j++) {
+				if (o.isOccupied(i, j)) {
+					for (int x = i - 1; x <= i + 1; x = x + 2) {
+						if (x < 0 || x >= Ocean.BOARD_SIZE)
 							continue;
-						for(int y=j-1 ; y<=j+1 ; y=y+2) {
-							if(y<0 || y>=Ocean.BOARD_SIZE)
+						for (int y = j - 1; y <= j + 1; y = y + 2) {
+							if (y < 0 || y >= Ocean.BOARD_SIZE)
 								continue;
-							if(o.isOccupied(x, y))
-								fail("Diagonally adjacent ships at ("
-										+ i + ", " + j + "), (" + x + ", " + y + ")");
+							if (o.isOccupied(x, y))
+								fail("Diagonally adjacent ships at (" + i
+										+ ", " + j + "), (" + x + ", " + y
+										+ ")");
 						}
 					}
 				}
@@ -129,13 +130,13 @@ public class OceanTest {
 	public void testGetShipsSunk() {
 		pb.placeShipAt(0, 0, true, o);
 		ac.placeShipAt(4, 4, false, o);
-		
+
 		assertEquals(0, o.getShipsSunk());
 		o.shootAt(0, 0);
 		assertEquals(1, o.getShipsSunk());
 		o.shootAt(0, 0);
 		assertEquals(1, o.getShipsSunk());
-		
+
 		o.shootAt(4, 4);
 		assertEquals(1, o.getShipsSunk());
 		o.shootAt(5, 4);
@@ -149,9 +150,9 @@ public class OceanTest {
 	public void testIsGameOver() {
 		o.placeAllShipsRandomly();
 		Random rand = new Random();
-		while(o.getShipsSunk()<11) {
+		while (o.getShipsSunk() < 11) {
 			assertFalse(o.isGameOver());
-			o.shootAt(rand.nextInt(Ocean.BOARD_SIZE), 
+			o.shootAt(rand.nextInt(Ocean.BOARD_SIZE),
 					rand.nextInt(Ocean.BOARD_SIZE));
 		}
 		assertTrue(o.isGameOver());

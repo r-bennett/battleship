@@ -19,7 +19,8 @@ public class Ocean {
 	private boolean[][] firedUpon;
 
 	/**
-	 * 
+	 * Initialises all fields. Also adds an instance of
+	 * EmptySea to all positions of shipArray[][]
 	 */
 	public Ocean() {
 		shipArray = new Ship[BOARD_SIZE][BOARD_SIZE];
@@ -33,6 +34,10 @@ public class Ocean {
 	}
 
 	/**
+	 * 	Attempts to place the correct number of each type
+	 * of ship, beginning with the largest. If the current layout means there 
+	 * is no valid position for the ship, then the board is wiped and
+	 * the process restarted.
 	 * 
 	 */
 	public void placeAllShipsRandomly() {	
@@ -72,8 +77,15 @@ public class Ocean {
 	}
 
 	/**
-	 * @param ship
-	 * @return
+	 * Generates a random bow coordinate and orientation, 
+	 * and attempts to place ship there. If not possible, 
+	 * cycles through all possible positions and orientations.
+	 * Method returns once ship is placed or all permutations
+	 * have been tried.
+	 * 
+	 * @param ship the ship to be placed
+	 * @return true if the ship was placed successfully,
+	 * false if there are no valid positions for the ship
 	 */
 	private boolean place(Ship ship) {
 		int orientation = rand.nextInt(2);
@@ -104,9 +116,12 @@ public class Ocean {
 	}
 
 	/**
-	 * @param row
-	 * @param column
-	 * @return
+	 * Checks if a given position is occupied
+	 * 
+	 * @param row the row to check
+	 * @param column the column to check
+	 * @return true if a non-EmptySea ship is in the position,
+	 * false if the position is EmptySea or null
 	 */
 	public boolean isOccupied(int row, int column) {
 		if(shipArray[column][row] == null ||
@@ -117,9 +132,14 @@ public class Ocean {
 	}
 
 	/**
-	 * @param row
-	 * @param column
-	 * @return
+	 * Shoots at the given position. Updates the firedUpon[][]
+	 * array, and if there is an unsunk ship at the position calls
+	 * the ship's shootAt() method. Updates shipsSunk, hitCount and gameOver 
+	 * fields where necessary.
+	 * 
+	 * @param row target row
+	 * @param column target column
+	 * @return true if an unsunk ship is hit, false otherwise
 	 */
 	public boolean shootAt(int row, int column) {
 		if(row<0 || row>=BOARD_SIZE
@@ -149,42 +169,46 @@ public class Ocean {
 	}
 
 	/**
-	 * @return
+	 * @return shotsFired
 	 */
 	public int getShotsFired() {
 		return shotsFired;
 	}
 
 	/**
-	 * @return
+	 * @return hitCount
 	 */
 	public int getHitCount() {
 		return hitCount;
 	}
 
 	/**
-	 * @return
+	 * @return shipsSunk
 	 */
 	public int getShipsSunk() {
 		return shipsSunk;
 	}
 
 	/**
-	 * @return
+	 * @return gameOver
 	 */
 	public boolean isGameOver() {
 		return gameOver;
 	}
 
 	/**
-	 * @return
+	 * @return shipArray
 	 */
 	public Ship[][] getShipArray() {
 		return shipArray;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return string representing the player's board.
+	 * Has digits 0 to 9 along top row and down first column
+	 * for coordinates, and all columns separated with a single
+	 * space. Unfired on positions show '.', fired and missed
+	 * show '-', fired and hit show 'S', and fired and sunk show 'x'
 	 */
 	@Override
 	public String toString() {
@@ -207,7 +231,7 @@ public class Ocean {
 	}
 	
 	/**
-	 * 
+	 * Fills shipArray with instances of EmptySea 
 	 */
 	private void emptyShips() {
 		for(int i=0 ; i<BOARD_SIZE ; i++) {
